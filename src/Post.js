@@ -30,11 +30,34 @@ class Header extends Component {
 }
 
 class Content extends Component {
-    render () {
-        return (
-            <p>{this.props.content}</p>
-        )
+  constructor(props) {
+    super(props);
+    this.state = {
+      body: this.props.content
     }
+    this.changeContent = this.changeContent.bind(this)
+  }
+
+  changeContent(e) {
+    // alert
+    let answer = prompt("What would you like to update body to?");
+    // update the state
+    this.setState((prevState, props) => {
+      return {
+        body: answer
+      }
+    })
+  }  
+  
+  render () {
+
+    return (
+        <div>
+          <p>{this.state.content}</p>
+          <button onClick={this.changeContent}>Click to edit</button>
+        </div>
+    )
+  }
 }
 
   
